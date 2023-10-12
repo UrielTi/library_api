@@ -1,4 +1,5 @@
 <?php
+// conexion a la base de datos con pdo
 	class Conexion{ 
 	private $host = "localhost";
 	private $user = "root";

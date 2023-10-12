@@ -1,19 +1,22 @@
+<!-- archivo que comprende el registro y edicion de los libros -->
 <!DOCTYPE html>
 <html lang="es" data-bs-theme="dark">
 
 <head>
     <?php
+    // dependencias del head
     include "../Components/Head.php";
     ?>
 </head>
 
 <body>
     <?php
+    // archivo autoload el cual nos permite comunicarnos con la clase libro
     include_once("../Controllers/Autoload.php");
     $id = intval($_GET['id']);
 
     $objLibros = new Libros;
-
+    // generamos los valores en los respectivos inputs si se trata de un registro existente
     if ($id != 0) {
         $libro = $objLibros->getLibro($id);
         $title = $libro['title'];
@@ -30,6 +33,8 @@
                     <input type="hidden" name="id" value="<?php echo $id;?>" />
                     <span class="input-group-text" style="background-color: #1A72DB; color: #FFFFFF;">Título del
                         Libro:</span>
+                        <!-- en los value de estos inputs imprimimos el valor por medio de un operador ternario en el caso de que 
+                        si se ha encontrado un registro o en su defecto lo dejamos vacio para poder registrar un libro-->
                     <input type="text" name="title" id="title" value="<?php $echo = (isset($title) != NULL) ? $title : '';
                                                                         echo $echo; ?>" class="form-control rounded-end" placeholder="" autocomplete="off" required>
 
@@ -58,6 +63,7 @@
                     <div class="controls">
 
                         <center>
+                            <!-- hacemos uso de operadores ternarios los cuales mostraran un registro o una actualizacion-->
                             <input type="submit" name="<?php $echo = ($id == 0) ? 'insert' : 'update';
                                                         echo $echo; ?>" id="<?php $echo = ($id == 0) ? 'insert' : 'update';
                                                                             echo $echo; ?>" value="<?php $echo = ($id == 0) ? 'Registrar' : 'Actualizar';

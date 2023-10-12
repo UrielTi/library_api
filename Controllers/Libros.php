@@ -1,17 +1,19 @@
 <?php
 require_once("autoload.php");
+// funciones poo con pdo
 class Libros extends Conexion{
     private $strTitulo;
     private $strAutor;
     private $intAño;
     private $strGenero;
     private $conn;
-
+    // generamos conexion
     public function __construct(){
         $this->conn = new Conexion();
         $this->conn = $this->conn->connect();
     }
 
+    // registro de dato
     public function insertLibro(string $titulo, string $autor, int $año, string $genero)
     {
         $this->strTitulo = $titulo;
@@ -25,7 +27,7 @@ class Libros extends Conexion{
         $resInsert = $insert->execute($arrData);
         return $resInsert;
     }
-
+    // obtener libros
     public function getLibros()
     {
         $sql = "SELECT * FROM library";
@@ -33,7 +35,7 @@ class Libros extends Conexion{
         $request = $execute->fetchall(PDO::FETCH_ASSOC);
         return $request;
     }
-
+    // actualizar un libro
     public function updateLibros(int $id, string $titulo, string $autor, int $año, string $genero)
     {
         $this->strTitulo = $titulo;
@@ -46,7 +48,7 @@ class Libros extends Conexion{
         $resExecute = $update->execute($arrData);
         return $resExecute;
     }
-
+    // obtener un libro
     public function getLibro(int $id)
     {
         $sql = "SELECT * FROM library WHERE id = ?";
@@ -56,7 +58,7 @@ class Libros extends Conexion{
         $request = $query->fetch(PDO::FETCH_ASSOC);
         return $request;
     }
-
+    // eliminar un registro
     public function deleteLibro(int $id)
     {
         $sql = "DELETE FROM library WHERE id = ?";

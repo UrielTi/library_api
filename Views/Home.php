@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+    <!-- archivo html principal el cual contiene la interfaz del servicio web -->
 
 <head>
     <?php
+    // componentes del head, en el cual viene las funcionalidades de la interfaz
     include("../Components/Head.php");
     ?>
 </head>
 
 <script>
     <?php
+    // scripts javascript de interfaz
     include("../Scripts/Scripts.js");
     ?>
 </script>
@@ -50,6 +53,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- aca invocamos nuestro archivo de tabla -->
                             <?php include_once '../Components/Table.php' ?>
                         </tbody>
                     </table>
